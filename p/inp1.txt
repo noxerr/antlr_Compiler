@@ -1,0 +1,22 @@
+start 
+A;B;C|D+E|F#G
+end
+Sales
+
+start 
+X+Y;Z#M|P+Q;R;T
+end
+Accounting
+
+connection A X
+connection D M
+file F -> B
+file F <- M
+file Y -> A
+
+
+QUERIES
+
+
+
+
