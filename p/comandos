@@ -1,0 +1,4 @@
+antlr -gt bpmn.g
+dlg -ci parser.dlg scan.c
+g++ -o p1 bpmn.c scan.c err.c
+p1 < inp1.txt

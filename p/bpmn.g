@@ -166,8 +166,9 @@ int main() {
 #token ID "[a-zA-Z][a-zA-Z0-9]*"
 #token SPACE "[\ \n]" << zzskip();>>
 
-bpmn: (process)* QUERIES! queries <<#0=createASTlist(_sibling);>>;
+bpmn: processAux QUERIES! queriesAux <<#0=createASTlist(_sibling);>>;
 
+processAux: (process)* <<#0=createASTlist(_sibling);>>;
 process: rol | conexio | files; 
 
 rol: STARTP! expr ENDP! ID^;
@@ -188,7 +189,13 @@ expr4: term (SEQ^ term)*;
 term: ID;
 
 
-queries: ;
+queriesAux: (queries)* <<#0=createASTlist(_sibling);>>;
+
+queries: question;
+
+question: CRIT^ ID
+	| DIFFER^ ID ID
+	| CORRECTF^ ID;
 
 
 
